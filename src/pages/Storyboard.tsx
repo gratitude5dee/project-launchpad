@@ -4,6 +4,7 @@ import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/componen
 import { StoryboardHeader } from "@/components/storyboard/StoryboardHeader";
 import { StoryboardSidebar } from "@/components/storyboard/StoryboardSidebar";
 import { ShotsRow } from "@/components/storyboard/ShotsRow";
+import { GradientBackground } from "@/components/effects/GradientBackground";
 import { Plus } from "lucide-react";
 import { useState } from "react";
 
@@ -15,42 +16,45 @@ const Storyboard = () => {
   };
 
   return (
-    <div className="h-screen bg-dark text-white overflow-hidden">
-      <StoryboardHeader />
-      
-      <div className="h-[calc(100vh-64px)]">
-        <ResizablePanelGroup direction="horizontal">
-          <ResizablePanel defaultSize={20} minSize={15} maxSize={30}>
-            <StoryboardSidebar />
-          </ResizablePanel>
+    <div className="h-screen bg-dark text-white overflow-hidden relative">
+      <GradientBackground />
+      <div className="relative z-10">
+        <StoryboardHeader />
+        
+        <div className="h-[calc(100vh-64px)]">
+          <ResizablePanelGroup direction="horizontal">
+            <ResizablePanel defaultSize={20} minSize={15} maxSize={30}>
+              <StoryboardSidebar />
+            </ResizablePanel>
 
-          <ResizableHandle withHandle />
+            <ResizableHandle withHandle />
 
-          <ResizablePanel defaultSize={80}>
-            <div className="h-full flex flex-col">
-              <ScrollArea className="flex-1">
-                <div className="min-h-full">
-                  {scenes.map((sceneNumber) => (
-                    <ShotsRow 
-                      key={`scene-${sceneNumber}`} 
-                      sceneNumber={sceneNumber}
-                    />
-                  ))}
-                  <div className="p-6 flex justify-center">
-                    <Button 
-                      variant="outline" 
-                      className="bg-dark-card border-white/10 hover:bg-white/5 px-8 py-4"
-                      onClick={addScene}
-                    >
-                      <Plus className="h-6 w-6 mr-2" />
-                      Add a scene
-                    </Button>
+            <ResizablePanel defaultSize={80}>
+              <div className="h-full flex flex-col">
+                <ScrollArea className="flex-1">
+                  <div className="min-h-full">
+                    {scenes.map((sceneNumber) => (
+                      <ShotsRow 
+                        key={`scene-${sceneNumber}`} 
+                        sceneNumber={sceneNumber}
+                      />
+                    ))}
+                    <div className="p-6 flex justify-center">
+                      <Button 
+                        variant="outline" 
+                        className="bg-white/5 backdrop-blur-sm border-white/20 hover:bg-white/10 px-8 py-4"
+                        onClick={addScene}
+                      >
+                        <Plus className="h-6 w-6 mr-2" />
+                        Add a scene
+                      </Button>
+                    </div>
                   </div>
-                </div>
-              </ScrollArea>
-            </div>
-          </ResizablePanel>
-        </ResizablePanelGroup>
+                </ScrollArea>
+              </div>
+            </ResizablePanel>
+          </ResizablePanelGroup>
+        </div>
       </div>
     </div>
   );
