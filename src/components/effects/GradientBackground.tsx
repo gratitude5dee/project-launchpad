@@ -1,4 +1,4 @@
-import { useRef, Suspense } from 'react';
+import { useRef } from 'react';
 import * as THREE from 'three';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrthographicCamera } from '@react-three/drei';
@@ -12,19 +12,14 @@ const vertexShader = `
 `;
 
 const fragmentShader = `
-  uniform float uTime;
+  uniform float time;
   varying vec2 vUv;
-
-  float random(vec2 st) {
-    return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
-  }
-
+  
   void main() {
-    vec2 st = vUv;
-    float noise = random(st + uTime * 0.1);
-    vec3 color1 = vec3(0.039, 0.059, 0.11);
-    vec3 color2 = vec3(0.145, 0.161, 0.208);
-    vec3 finalColor = mix(color1, color2, noise);
+    vec3 color1 = vec3(0.1, 0.1, 0.4);
+    vec3 color2 = vec3(0.3, 0.2, 0.5);
+    float noise = fract(sin(dot(vUv, vec2(12.9898, 78.233))) * 43758.5453123);
+    vec3 finalColor = mix(color1, color2, noise + sin(time * 0.5) * 0.5);
     gl_FragColor = vec4(finalColor, 1.0);
   }
 `;
@@ -35,7 +30,7 @@ function NoiseShader() {
 
   useFrame((state) => {
     if (materialRef.current) {
-      materialRef.current.uniforms.uTime.value = state.clock.elapsedTime;
+      materialRef.current.uniforms.time.value = state.clock.getElapsedTime();
     }
   });
 
@@ -47,19 +42,10 @@ function NoiseShader() {
         vertexShader={vertexShader}
         fragmentShader={fragmentShader}
         uniforms={{
-          uTime: { value: 0 }
+          time: { value: 0 }
         }}
       />
     </mesh>
-  );
-}
-
-function Scene() {
-  return (
-    <>
-      <OrthographicCamera makeDefault position={[0, 0, 1]} />
-      <NoiseShader />
-    </>
   );
 }
 
@@ -67,15 +53,14 @@ export const GradientBackground = () => {
   return (
     <div className="fixed inset-0 -z-10">
       <Canvas
-        gl={{ 
+        gl={{
           antialias: true,
           alpha: true,
           powerPreference: "high-performance"
         }}
       >
-        <Suspense fallback={null}>
-          <Scene />
-        </Suspense>
+        <OrthographicCamera makeDefault position={[0, 0, 1]} />
+        <NoiseShader />
       </Canvas>
     </div>
   );
