@@ -1,9 +1,7 @@
 import { useRef } from 'react';
 import * as THREE from 'three';
-import { Canvas, useFrame, extend } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { OrthographicCamera } from '@react-three/drei';
-
-extend({ ShaderMaterial: THREE.ShaderMaterial });
 
 function NoiseShader() {
   const meshRef = useRef<THREE.Mesh>(null);
@@ -41,17 +39,18 @@ function NoiseShader() {
     }
   `;
 
+  const shaderMaterial = new THREE.ShaderMaterial({
+    vertexShader,
+    fragmentShader,
+    uniforms: {
+      uTime: { value: 0 }
+    }
+  });
+
   return (
     <mesh ref={meshRef}>
       <planeGeometry args={[2, 2]} />
-      <shaderMaterial
-        ref={materialRef}
-        vertexShader={vertexShader}
-        fragmentShader={fragmentShader}
-        uniforms={{
-          uTime: { value: 0 }
-        }}
-      />
+      <primitive object={shaderMaterial} ref={materialRef} />
     </mesh>
   );
 }
