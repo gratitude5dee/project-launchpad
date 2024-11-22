@@ -1,17 +1,53 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { Copy, Edit2 } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
+import { Synopsis } from "@/components/breakdown/Synopsis";
+import { SceneCard } from "@/components/breakdown/SceneCard";
+
+interface Scene {
+  id: number;
+  title: string;
+  description: string;
+  location: string;
+  lighting: string;
+  weather: string;
+  sceneDescription: string;
+  voiceover: string;
+}
 
 const Breakdown = () => {
   const navigate = useNavigate();
   const [showEditDialog, setShowEditDialog] = useState(false);
   const [selectedScene, setSelectedScene] = useState<number | null>(null);
-  
+  const [scenes, setScenes] = useState<Scene[]>([
+    {
+      id: 1,
+      title: "Return to Eldridge",
+      description: "A quaint small town with cobblestone streets and weathered buildings...",
+      location: "A quaint small town with cobblestone streets and weathered buildings, featuring faded signs and overgrown bushes...",
+      lighting: "September, 4:00 PM, soft natural sunlight",
+      weather: "Crystal clear skies, calm atmosphere...",
+      sceneDescription: "Sarah Thompson stands at the edge of Eldridge, her childhood town...",
+      voiceover: "Returning to Eldridge feels like stepping back in time—every cobblestone echoes with memories..."
+    }
+  ]);
+
+  const handleDuplicate = (sceneId: number) => {
+    const sceneToClone = scenes.find(scene => scene.id === sceneId);
+    if (sceneToClone) {
+      const newScene = {
+        ...sceneToClone,
+        id: Math.max(...scenes.map(s => s.id)) + 1,
+        title: `${sceneToClone.title} (Copy)`
+      };
+      setScenes([...scenes, newScene]);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#0A0F1C] text-white">
       <nav className="border-b border-primary/10">
@@ -40,82 +76,29 @@ const Breakdown = () => {
         <h2 className="text-2xl font-bold mb-6">Breakdown</h2>
         
         <div className="space-y-8">
-          <div>
-            <h3 className="text-lg font-semibold mb-4">SYNOPSIS</h3>
-            <div className="group relative">
-              <p className="text-gray-400">
-                In Eldridge, Sarah Thompson returns to her childhood home after her estranged mother's death. 
-                As she encounters peculiar townspeople and significant locations, she unravels family secrets 
-                through her mother's journal, leading her to confront the haunting truths of her past. 
-                Empowered by understanding, she leaves the town with acceptance of her legacy.
-              </p>
-              <div className="absolute right-2 top-2 opacity-0 group-hover:opacity-100 transition-opacity flex space-x-2">
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="h-8 w-8 p-0 hover:bg-white/10"
-                  onClick={() => {
-                    setSelectedScene(0);
-                    setShowEditDialog(true);
-                  }}
-                >
-                  <Edit2 className="h-4 w-4" />
-                </Button>
-              </div>
-            </div>
-          </div>
+          <Synopsis 
+            content="In Eldridge, Sarah Thompson returns to her childhood home after her estranged mother's death. As she encounters peculiar townspeople and significant locations, she unravels family secrets through her mother's journal, leading her to confront the haunting truths of her past. Empowered by understanding, she leaves the town with acceptance of her legacy."
+            onEdit={() => {
+              setSelectedScene(0);
+              setShowEditDialog(true);
+            }}
+          />
 
           <div className="space-y-6">
-            <div className="border-b border-gray-800 pb-6">
-              <div className="group relative">
-                <h4 className="text-lg font-medium mb-4">Scene 1 - Return to Eldridge</h4>
-                <p className="text-sm text-gray-400 mb-4">
-                  A quaint small town with cobblestone streets and weathered buildings, featuring faded signs
-                  and overgrown bushes. The architecture reflects a bygone era, with Victorian-style houses and...
-                </p>
-                
-                <div className="absolute right-2 top-2 opacity-0 group-hover:opacity-100 transition-opacity flex space-x-2">
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
-                    className="h-8 w-8 p-0 hover:bg-white/10"
-                    onClick={() => {
-                      setSelectedScene(1);
-                      setShowEditDialog(true);
-                    }}
-                  >
-                    <Edit2 className="h-4 w-4" />
-                  </Button>
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
-                    className="h-8 w-8 p-0 hover:bg-white/10"
-                  >
-                    <Copy className="h-4 w-4" />
-                  </Button>
-                </div>
-                
-                <div className="space-y-4">
-                  <div>
-                    <h5 className="text-sm font-medium mb-2">SCENE DESCRIPTION</h5>
-                    <p className="text-sm text-gray-400">
-                      Sarah Thompson stands at the edge of Eldridge, her childhood town. The cobblestone streets 
-                      stretch before her, lined with dilapidated buildings and overgrown gardens. The air is thick 
-                      with nostalgia as she takes her first steps into the town, her heart heavy with the weight 
-                      of her return. The sun casts long shadows, hinting at the secrets held within the town's history.
-                    </p>
-                  </div>
-                  
-                  <div>
-                    <h5 className="text-sm font-medium mb-2">VOICEOVER</h5>
-                    <p className="text-sm text-gray-400">
-                      Returning to Eldridge feels like stepping back in time—every cobblestone echoes with 
-                      memories, and every shadow brings a whisper of the past.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {scenes.map((scene) => (
+              <SceneCard
+                key={scene.id}
+                title={scene.title}
+                description={scene.description}
+                sceneDescription={scene.sceneDescription}
+                voiceover={scene.voiceover}
+                onEdit={() => {
+                  setSelectedScene(scene.id);
+                  setShowEditDialog(true);
+                }}
+                onDuplicate={() => handleDuplicate(scene.id)}
+              />
+            ))}
           </div>
         </div>
       </div>
