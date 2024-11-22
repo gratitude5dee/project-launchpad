@@ -114,6 +114,7 @@ const Breakdown = () => {
           </Button>
           <Button 
             className="bg-primary hover:bg-primary/90"
+            onClick={() => navigate("/storyboard")}
           >
             Start
           </Button>
