@@ -42,8 +42,8 @@ export const ShotsRow = ({ sceneNumber, className }: ShotsRowProps) => {
 
   return (
     <div className={cn(
-      "p-6 border-b border-white/5 bg-gradient-to-r from-white/[0.03] to-transparent backdrop-blur-sm relative",
-      "before:absolute before:inset-0 before:bg-gradient-to-r before:from-blue-500/5 before:to-purple-500/5 before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500",
+      "p-6 border-b border-white/5 bg-gradient-to-r from-white/[0.03] to-transparent backdrop-blur-sm relative group",
+      "before:absolute before:inset-0 before:bg-gradient-to-r before:from-blue-500/5 before:to-purple-500/5 before:opacity-0 group-hover:before:opacity-100 before:transition-opacity before:duration-500",
       className
     )}>
       <div className="mb-6">
@@ -52,7 +52,7 @@ export const ShotsRow = ({ sceneNumber, className }: ShotsRowProps) => {
           <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-blue-400/20 to-purple-400/20 blur-xl" />
         </h3>
       </div>
-      <ScrollArea className="w-full rounded-lg bg-black/20 backdrop-blur-md p-4">
+      <ScrollArea className="w-full rounded-lg bg-black/20 backdrop-blur-md p-4 overflow-x-auto">
         <DndContext 
           sensors={sensors} 
           onDragEnd={handleDragEnd}
@@ -60,7 +60,7 @@ export const ShotsRow = ({ sceneNumber, className }: ShotsRowProps) => {
         >
           <SortableContext items={shots} strategy={horizontalListSortingStrategy}>
             <AnimatePresence mode="popLayout">
-              <div className="flex space-x-6 pb-4">
+              <div className="flex space-x-6 pb-4 min-w-max">
                 {shots.map((index) => (
                   <motion.div
                     key={`scene-${sceneNumber}-shot-${index}`}
@@ -71,7 +71,12 @@ export const ShotsRow = ({ sceneNumber, className }: ShotsRowProps) => {
                     transition={{
                       type: "spring",
                       stiffness: 300,
-                      damping: 25
+                      damping: 25,
+                      mass: 0.8
+                    }}
+                    className="will-change-transform"
+                    style={{
+                      touchAction: "none"
                     }}
                   >
                     <ShotCard 
