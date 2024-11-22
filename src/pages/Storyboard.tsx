@@ -28,28 +28,27 @@ const Storyboard = () => {
 
           <ResizablePanel defaultSize={80}>
             <div className="h-full flex flex-col">
-              <div className="flex-1 overflow-hidden">
-                <ScrollArea className="h-full">
-                  <div className="min-h-full">
-                    {scenes.map((sceneNumber) => (
-                      <ShotsRow 
-                        key={`scene-${sceneNumber}`} 
-                        sceneNumber={sceneNumber}
-                      />
-                    ))}
-                    <div className="p-6 flex justify-center">
-                      <Button 
-                        variant="outline" 
-                        className="bg-dark-card border-white/10 hover:bg-white/5 px-8 py-4"
-                        onClick={addScene}
-                      >
-                        <Plus className="h-6 w-6 mr-2" />
-                        Add a scene
-                      </Button>
-                    </div>
+              <ScrollArea className="flex-1">
+                <div className="min-h-full w-full">
+                  {scenes.map((sceneNumber) => (
+                    <ShotsRow 
+                      key={`scene-${sceneNumber}`} 
+                      sceneNumber={sceneNumber}
+                      className="min-w-max"
+                    />
+                  ))}
+                  <div className="p-6 flex justify-center">
+                    <Button 
+                      variant="outline" 
+                      className="bg-dark-card border-white/10 hover:bg-white/5 px-8 py-4"
+                      onClick={addScene}
+                    >
+                      <Plus className="h-6 w-6 mr-2" />
+                      Add a scene
+                    </Button>
                   </div>
-                </ScrollArea>
-              </div>
+                </div>
+              </ScrollArea>
             </div>
           </ResizablePanel>
         </ResizablePanelGroup>
