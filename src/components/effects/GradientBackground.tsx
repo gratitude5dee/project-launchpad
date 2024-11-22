@@ -42,7 +42,7 @@ extend({ NoiseShaderMaterial });
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      noiseShaderMaterial: THREE.ShaderMaterialProps & {
+      noiseShaderMaterial: JSX.IntrinsicElements['meshStandardMaterial'] & {
         uTime?: number;
       };
     }
@@ -50,7 +50,9 @@ declare global {
 }
 
 type NoiseShaderMaterialImpl = {
-  uTime: number;
+  uniforms: {
+    uTime: { value: number };
+  };
 } & THREE.ShaderMaterial;
 
 function NoiseShader() {
