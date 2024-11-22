@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, Suspense } from 'react';
 import * as THREE from 'three';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrthographicCamera } from '@react-three/drei';
@@ -12,14 +12,14 @@ const vertexShader = `
 `;
 
 const fragmentShader = `
-  uniform float time;
+  uniform float uTime;
   varying vec2 vUv;
-  
+
   void main() {
     vec3 color1 = vec3(0.1, 0.1, 0.4);
     vec3 color2 = vec3(0.3, 0.2, 0.5);
     float noise = fract(sin(dot(vUv, vec2(12.9898, 78.233))) * 43758.5453123);
-    vec3 finalColor = mix(color1, color2, noise + sin(time * 0.5) * 0.5);
+    vec3 finalColor = mix(color1, color2, noise + sin(uTime * 0.5) * 0.5);
     gl_FragColor = vec4(finalColor, 1.0);
   }
 `;
@@ -30,7 +30,7 @@ function NoiseShader() {
 
   useFrame((state) => {
     if (materialRef.current) {
-      materialRef.current.uniforms.time.value = state.clock.getElapsedTime();
+      materialRef.current.uniforms.uTime.value = state.clock.getElapsedTime();
     }
   });
 
@@ -42,10 +42,19 @@ function NoiseShader() {
         vertexShader={vertexShader}
         fragmentShader={fragmentShader}
         uniforms={{
-          time: { value: 0 }
+          uTime: { value: 0 }
         }}
       />
     </mesh>
+  );
+}
+
+function Scene() {
+  return (
+    <Suspense fallback={null}>
+      <OrthographicCamera makeDefault position={[0, 0, 1]} />
+      <NoiseShader />
+    </Suspense>
   );
 }
 
@@ -58,9 +67,10 @@ export const GradientBackground = () => {
           alpha: true,
           powerPreference: "high-performance"
         }}
+        dpr={[1, 2]}
+        camera={{ position: [0, 0, 1] }}
       >
-        <OrthographicCamera makeDefault position={[0, 0, 1]} />
-        <NoiseShader />
+        <Scene />
       </Canvas>
     </div>
   );
