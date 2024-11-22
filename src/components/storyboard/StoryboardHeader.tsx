@@ -1,6 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Settings, FileCode, Users, Music, Mic2, Undo, Redo, Play, Share } from "lucide-react";
+import { Settings, Undo, Redo, Play, Share } from "lucide-react";
+import { StylePopover } from "./popovers/StylePopover";
+import { CastPopover } from "./popovers/CastPopover";
+import { SoundtrackPopover } from "./popovers/SoundtrackPopover";
+import { VoiceoverPopover } from "./popovers/VoiceoverPopover";
 
 export const StoryboardHeader = () => {
   return (
@@ -17,22 +21,10 @@ export const StoryboardHeader = () => {
                 <Settings className="h-4 w-4 mr-2" />
                 Settings
               </Button>
-              <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/5">
-                <FileCode className="h-4 w-4 mr-2" />
-                Style
-              </Button>
-              <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/5">
-                <Users className="h-4 w-4 mr-2" />
-                Cast
-              </Button>
-              <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/5">
-                <Music className="h-4 w-4 mr-2" />
-                Soundtrack
-              </Button>
-              <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/5">
-                <Mic2 className="h-4 w-4 mr-2" />
-                Voiceover
-              </Button>
+              <StylePopover />
+              <CastPopover />
+              <SoundtrackPopover />
+              <VoiceoverPopover />
             </nav>
           </div>
 
