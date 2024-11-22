@@ -10,6 +10,7 @@ import Settings from "./pages/Settings";
 import Breakdown from "./pages/Breakdown";
 import LoadingPage from "./pages/LoadingPage";
 import Storyboard from "./pages/Storyboard";
+import ShotEditor from "./pages/ShotEditor";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => {
             <Route path="/breakdown" element={<Breakdown />} />
             <Route path="/loading" element={<LoadingPage />} />
             <Route path="/storyboard" element={<Storyboard />} />
+            <Route path="/shot-editor" element={<ShotEditor />} />
           </Routes>
           <Toaster />
           <Sonner />

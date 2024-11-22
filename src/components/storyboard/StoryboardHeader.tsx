@@ -6,8 +6,11 @@ import { CastPopover } from "./popovers/CastPopover";
 import { SoundtrackPopover } from "./popovers/SoundtrackPopover";
 import { VoiceoverPopover } from "./popovers/VoiceoverPopover";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 export const StoryboardHeader = () => {
+  const navigate = useNavigate();
+
   return (
     <motion.header 
       initial={{ opacity: 0, y: -10 }}
@@ -44,12 +47,14 @@ export const StoryboardHeader = () => {
                 <TabsTrigger 
                   value="storyboard" 
                   className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary font-cinzel"
+                  onClick={() => navigate("/storyboard")}
                 >
                   Storyboard
                 </TabsTrigger>
                 <TabsTrigger 
                   value="shot-editor" 
                   className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary font-cinzel"
+                  onClick={() => navigate("/shot-editor")}
                 >
                   Shot Editor
                 </TabsTrigger>
