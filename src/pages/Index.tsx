@@ -20,7 +20,7 @@ const Index = () => {
               <Button
                 size="lg"
                 className="bg-primary hover:bg-primary/90 text-white"
-                onClick={() => navigate("/create")}
+                onClick={() => navigate("/concept")}
               >
                 <PlusCircle className="mr-2 h-5 w-5" />
                 New Project
@@ -40,7 +40,7 @@ const Index = () => {
                 variant="outline"
                 size="lg"
                 className="bg-secondary hover:bg-secondary/90 text-white border-primary/20"
-                onClick={() => navigate("/create")}
+                onClick={() => navigate("/concept")}
               >
                 <FileCode className="mr-2 h-5 w-5" />
                 New blank Project

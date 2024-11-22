@@ -4,7 +4,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
-import ProjectCreation from "./pages/ProjectCreation";
+import Concept from "./pages/Concept";
+import Storyline from "./pages/Storyline";
 import Storyboard from "./pages/Storyboard";
 
 const queryClient = new QueryClient();
@@ -17,8 +18,9 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/create" element={<ProjectCreation />} />
-          <Route path="/storyboard" element={<Storyboard />} />
+          <Route path="/concept" element={<Concept />} />
+          <Route path="/storyline" element={<Storyline />} />
+          <Route path="/settings" element={<Storyboard />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
