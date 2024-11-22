@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, Suspense } from 'react';
 import * as THREE from 'three';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrthographicCamera } from '@react-three/drei';
@@ -54,6 +54,15 @@ function NoiseShader() {
   );
 }
 
+function Scene() {
+  return (
+    <>
+      <OrthographicCamera makeDefault position={[0, 0, 1]} />
+      <NoiseShader />
+    </>
+  );
+}
+
 export const GradientBackground = () => {
   return (
     <div className="fixed inset-0 -z-10">
@@ -64,8 +73,9 @@ export const GradientBackground = () => {
           powerPreference: "high-performance"
         }}
       >
-        <OrthographicCamera makeDefault position={[0, 0, 1]} />
-        <NoiseShader />
+        <Suspense fallback={null}>
+          <Scene />
+        </Suspense>
       </Canvas>
     </div>
   );
