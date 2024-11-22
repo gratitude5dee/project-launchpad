@@ -4,26 +4,57 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Mic, Play, Image as ImageIcon, Plus, RefreshCw, Paintbrush } from "lucide-react";
+import { Mic, Play, Image as ImageIcon, Plus, RefreshCw, Paintbrush, GripHorizontal } from "lucide-react";
 import { CanvasDrawer } from "./CanvasDrawer";
 import { motion } from "framer-motion";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
 interface ShotCardProps {
   shotNumber: number;
+  id: number;
 }
 
-export const ShotCard = ({ shotNumber }: ShotCardProps) => {
+export const ShotCard = ({ shotNumber, id }: ShotCardProps) => {
   const [isCanvasOpen, setIsCanvasOpen] = useState(false);
+  
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging
+  } = useSortable({ id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    zIndex: isDragging ? 1 : 0,
+    opacity: isDragging ? 0.5 : 1,
+  };
 
   return (
     <>
       <motion.div
-        whileHover={{ scale: 1.02, rotateY: 5 }}
+        ref={setNodeRef}
+        style={style}
+        whileHover={{ scale: isDragging ? 1 : 1.02, rotateY: isDragging ? 0 : 5 }}
         transition={{ type: "spring", stiffness: 300 }}
       >
         <Card className="bg-white/10 backdrop-blur-lg border-white/20 p-4 hover:bg-white/15 transition-all duration-300 w-[300px] flex-shrink-0 shadow-xl hover:shadow-2xl relative overflow-hidden group">
           <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute top-2 right-2 cursor-grab active:cursor-grabbing z-50"
+            {...attributes}
+            {...listeners}
+          >
+            <GripHorizontal className="h-4 w-4 text-white/50" />
+          </Button>
+
           <div className="space-y-4 relative z-10">
             <div className="aspect-video bg-black/40 rounded-lg relative overflow-hidden group/image">
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-200" />
