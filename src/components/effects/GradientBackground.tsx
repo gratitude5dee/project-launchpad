@@ -1,7 +1,9 @@
 import { useRef } from 'react';
 import * as THREE from 'three';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas, useFrame, extend } from '@react-three/fiber';
 import { OrthographicCamera } from '@react-three/drei';
+
+extend({ ShaderMaterial: THREE.ShaderMaterial });
 
 function NoiseShader() {
   const meshRef = useRef<THREE.Mesh>(null);
@@ -57,7 +59,13 @@ function NoiseShader() {
 export const GradientBackground = () => {
   return (
     <div className="fixed inset-0 -z-10">
-      <Canvas gl={{ antialias: true }}>
+      <Canvas
+        gl={{ 
+          antialias: true,
+          alpha: true,
+          powerPreference: "high-performance"
+        }}
+      >
         <OrthographicCamera makeDefault position={[0, 0, 1]} />
         <NoiseShader />
       </Canvas>
