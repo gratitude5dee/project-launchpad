@@ -3,12 +3,28 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ArrowLeft, Upload, Wand2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const ProjectCreation = () => {
   const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    concept: "",
+    specialRequests: "",
+    format: "",
+    genre: ""
+  });
+
+  const hasInput = Object.values(formData).some(value => value.trim() !== "");
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
 
   return (
-    <div className="min-h-screen bg-[#0A0F1C] text-white">
+    <div className="min-h-screen bg-[#0A0F1C] text-white relative">
       {/* Navigation */}
       <nav className="border-b border-primary/10">
         <div className="container mx-auto px-4">
@@ -27,14 +43,14 @@ const ProjectCreation = () => {
                 <button className="px-4 py-2 text-gray-400 hover:text-white">BREAKDOWN</button>
               </div>
             </div>
-            <Button variant="outline" className="border-primary/20">
+            <Button variant="outline" className="border-primary/20 bg-[#1E293B] text-white hover:bg-[#1E293B]/80">
               Upgrade
             </Button>
           </div>
         </div>
       </nav>
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 pb-24">
         <div className="max-w-4xl mx-auto space-y-8">
           <div className="flex items-center justify-between">
             <h1 className="text-2xl font-semibold">Input your concept</h1>
@@ -67,14 +83,18 @@ const ProjectCreation = () => {
             <Textarea 
               className="min-h-[200px] bg-[#0D1424] border-primary/20 resize-none"
               placeholder="Input anything from a full script, a few scenes, or a story..."
+              value={formData.concept}
+              onChange={(e) => handleInputChange("concept", e.target.value)}
             />
 
             <div className="flex justify-between items-center">
-              <Button variant="outline" className="border-primary/20">
+              <Button variant="outline" className="border-primary/20 bg-[#1E293B] text-white hover:bg-[#1E293B]/80">
                 <Upload className="mr-2 h-5 w-5" />
                 Upload Text
               </Button>
-              <span className="text-gray-400">0 / 12000</span>
+              <span className="text-gray-400">
+                {formData.concept.length} / 12000
+              </span>
             </div>
           </div>
 
@@ -88,6 +108,8 @@ const ProjectCreation = () => {
                 <Input
                   className="bg-[#0D1424] border-primary/20"
                   placeholder='Anything from "80s atmosphere" to "plot twists" or "a car chase"'
+                  value={formData.specialRequests}
+                  onChange={(e) => handleInputChange("specialRequests", e.target.value)}
                 />
               </div>
 
@@ -95,15 +117,17 @@ const ProjectCreation = () => {
                 <div className="space-y-2">
                   <label className="text-gray-400 text-sm">FORMAT</label>
                   <div className="flex gap-2">
-                    <Button variant="outline" className="bg-primary/10 border-primary/20">Custom</Button>
-                    <Button variant="outline" className="border-gray-800 hover:border-primary/20">Short Film</Button>
-                    <Button variant="outline" className="border-gray-800 hover:border-primary/20">Commercial</Button>
+                    <Button variant="outline" className="bg-primary/10 border-primary/20 text-white">Custom</Button>
+                    <Button variant="outline" className="border-gray-800 hover:border-primary/20 bg-[#1E293B] text-white">Short Film</Button>
+                    <Button variant="outline" className="border-gray-800 hover:border-primary/20 bg-[#1E293B] text-white">Commercial</Button>
                   </div>
                 </div>
 
                 <Input
                   className="bg-[#0D1424] border-primary/20"
                   placeholder="How should the AI shape your story?"
+                  value={formData.format}
+                  onChange={(e) => handleInputChange("format", e.target.value)}
                 />
               </div>
 
@@ -112,9 +136,33 @@ const ProjectCreation = () => {
                 <Input
                   className="bg-[#0D1424] border-primary/20"
                   placeholder="This defines the overall style or category of your story"
+                  value={formData.genre}
+                  onChange={(e) => handleInputChange("genre", e.target.value)}
                 />
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer Bar */}
+      <div className="fixed bottom-0 left-0 right-0 bg-[#0A0F1C]/80 backdrop-blur-sm border-t border-primary/10">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-between items-center h-16">
+            <Button 
+              variant="outline" 
+              className="border-primary/20 bg-[#1E293B] text-white hover:bg-[#1E293B]/80"
+              onClick={() => navigate("/")}
+            >
+              Back
+            </Button>
+            <Button
+              className="bg-primary text-white hover:bg-primary/90 px-8"
+              disabled={!hasInput}
+              onClick={() => navigate("/storyboard")}
+            >
+              Next
+            </Button>
           </div>
         </div>
       </div>
