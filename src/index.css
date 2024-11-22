@@ -1,3 +1,5 @@
+@import '@fontsource/cinzel';
+@import '@fontsource/cormorant';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -33,6 +35,10 @@
   }
   body {
     @apply bg-[#0A0F1C] text-white antialiased;
+    font-family: 'Cormorant', serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cinzel', serif;
   }
 }
 
@@ -57,4 +63,37 @@
 /* Glass effect */
 .glass-effect {
   @apply bg-opacity-80 backdrop-blur-sm;
+}
+
+/* Mystical input styles */
+.mystical-input {
+  @apply bg-dark-card/30 border-white/10 text-white/90 placeholder:text-white/30
+         focus:ring-1 focus:ring-primary/50 focus:border-primary/50
+         rounded-lg transition-all duration-300;
+}
+
+/* Mystical card styles */
+.mystical-card {
+  @apply bg-dark-card/30 border border-white/10 rounded-lg p-4
+         backdrop-blur-sm transition-all duration-300
+         hover:bg-dark-card/40 hover:border-primary/30;
+}
+
+/* Golden text effect */
+.golden-text {
+  @apply bg-gradient-to-r from-amber-300 to-yellow-500 bg-clip-text text-transparent
+         animate-golden-glow relative;
+}
+
+/* Mystical button styles */
+.btn-mystical {
+  @apply bg-dark-card/30 border border-white/10 text-white/90
+         hover:bg-primary/10 hover:border-primary/30
+         transition-all duration-300 rounded-lg px-4 py-2
+         flex items-center gap-2;
+}
+
+/* Noise overlay */
+.noise-overlay {
+  @apply absolute inset-0 bg-[url('/noise.png')] mix-blend-overlay opacity-20 pointer-events-none;
 }
