@@ -30,8 +30,8 @@ export const ShotCard = ({ shotNumber, id }: ShotCardProps) => {
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
-    zIndex: isDragging ? 1 : 0,
-    opacity: isDragging ? 0.5 : 1,
+    zIndex: isDragging ? 1000 : 0,
+    opacity: isDragging ? 0.8 : 1,
   };
 
   return (
@@ -39,17 +39,19 @@ export const ShotCard = ({ shotNumber, id }: ShotCardProps) => {
       <motion.div
         ref={setNodeRef}
         style={style}
-        whileHover={{ scale: isDragging ? 1 : 1.02, rotateY: isDragging ? 0 : 5 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        whileHover={{ scale: isDragging ? 1 : 1.02 }}
         transition={{ type: "spring", stiffness: 300 }}
         className="relative"
       >
-        <Card className="bg-white/5 backdrop-blur-lg border-white/20 p-4 hover:bg-white/10 transition-all duration-300 w-[300px] flex-shrink-0 shadow-xl hover:shadow-2xl relative overflow-hidden group">
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <Card className="bg-white/[0.03] backdrop-blur-xl border-white/10 p-4 hover:bg-white/[0.06] transition-all duration-300 w-[300px] flex-shrink-0 shadow-2xl hover:shadow-purple-500/10 relative overflow-hidden group">
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           
           <Button
             variant="ghost"
             size="icon"
-            className="absolute top-2 right-2 cursor-grab active:cursor-grabbing z-50 hover:bg-white/10"
+            className="absolute top-2 right-2 cursor-grab active:cursor-grabbing z-50 hover:bg-white/10 transition-colors"
             {...attributes}
             {...listeners}
           >
@@ -68,18 +70,30 @@ export const ShotCard = ({ shotNumber, id }: ShotCardProps) => {
                 <Button 
                   variant="outline" 
                   size="icon" 
-                  className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20"
+                  className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-110"
                   onClick={() => setIsCanvasOpen(true)}
                 >
                   <Paintbrush className="h-4 w-4" />
                 </Button>
-                <Button variant="outline" size="icon" className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20">
+                <Button 
+                  variant="outline" 
+                  size="icon" 
+                  className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-110"
+                >
                   <ImageIcon className="h-4 w-4" />
                 </Button>
-                <Button variant="outline" size="icon" className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20">
+                <Button 
+                  variant="outline" 
+                  size="icon" 
+                  className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-110"
+                >
                   <Play className="h-4 w-4" />
                 </Button>
-                <Button variant="outline" size="icon" className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20">
+                <Button 
+                  variant="outline" 
+                  size="icon" 
+                  className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-110"
+                >
                   <RefreshCw className="h-4 w-4" />
                 </Button>
               </div>
@@ -88,10 +102,10 @@ export const ShotCard = ({ shotNumber, id }: ShotCardProps) => {
             <div>
               <Label className="text-xs text-white/70">SHOT TYPE</Label>
               <Select>
-                <SelectTrigger className="bg-white/5 backdrop-blur-sm border-white/10 focus:ring-1 focus:ring-white/20 mt-2">
+                <SelectTrigger className="bg-black/20 backdrop-blur-sm border-white/10 focus:ring-1 focus:ring-white/20 mt-2">
                   <SelectValue placeholder="Select shot type" />
                 </SelectTrigger>
-                <SelectContent className="bg-white/10 backdrop-blur-lg border-white/20">
+                <SelectContent className="bg-dark-modal/95 backdrop-blur-xl border-white/10">
                   <SelectItem value="close-up">Close-up</SelectItem>
                   <SelectItem value="medium">Medium Shot</SelectItem>
                   <SelectItem value="wide">Wide Shot</SelectItem>
