@@ -56,7 +56,7 @@ export const ShotCard = ({ shotNumber, id }: ShotCardProps) => {
           isDragging ? "shadow-2xl shadow-purple-500/20" : "hover:shadow-purple-500/10",
           isDragging ? "bg-white/[0.06]" : "hover:bg-white/[0.06]"
         )}>
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-purple-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           
           <Button
             variant="ghost"

@@ -25,11 +25,11 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#2563EB",
+          DEFAULT: "#9b87f5",
           foreground: "#FFFFFF",
         },
         secondary: {
-          DEFAULT: "#1E293B",
+          DEFAULT: "#7E69AB",
           foreground: "#FFFFFF",
         },
         dark: {
@@ -76,12 +76,21 @@ export default {
           "0%": { transform: "translateX(100%)" },
           "100%": { transform: "translateX(0)" },
         },
+        "golden-glow": {
+          "0%, 100%": {
+            "text-shadow": "0 0 10px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.3)",
+          },
+          "50%": {
+            "text-shadow": "0 0 20px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.5)",
+          },
+        },
       },
       animation: {
         "fade-up": "fade-up 0.5s ease-out",
         "fade-in": "fade-in 0.3s ease-out",
         "slide-in": "slide-in 0.3s ease-out",
         "slide-in-right": "slide-in-right 0.3s ease-out",
+        "golden-glow": "golden-glow 3s ease-in-out infinite",
       },
     },
   },
