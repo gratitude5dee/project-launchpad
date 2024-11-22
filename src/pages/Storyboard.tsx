@@ -3,7 +3,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
 import { StoryboardHeader } from "@/components/storyboard/StoryboardHeader";
 import { StoryboardSidebar } from "@/components/storyboard/StoryboardSidebar";
-import { ShotCard } from "@/components/storyboard/ShotCard";
+import { ShotsRow } from "@/components/storyboard/ShotsRow";
 import { Plus } from "lucide-react";
 
 const Storyboard = () => {
@@ -23,16 +23,20 @@ const Storyboard = () => {
             <div className="h-full flex flex-col">
               <div className="flex-1 overflow-hidden">
                 <ScrollArea className="h-full">
-                  <div className="p-6">
-                    <div className="grid grid-cols-1 gap-6 auto-rows-min">
-                      {[1, 2, 3, 4, 5].map((index) => (
-                        <ShotCard key={index} shotNumber={index} />
-                      ))}
-                    </div>
-                    <div className="mt-6 flex justify-center">
-                      <Button variant="outline" className="bg-dark-card border-white/10 hover:bg-white/5">
+                  <div className="min-h-full">
+                    {[1, 2, 3].map((sceneNumber) => (
+                      <ShotsRow 
+                        key={`scene-${sceneNumber}`} 
+                        sceneNumber={sceneNumber}
+                      />
+                    ))}
+                    <div className="p-6 flex justify-center">
+                      <Button 
+                        variant="outline" 
+                        className="bg-dark-card border-white/10 hover:bg-white/5"
+                      >
                         <Plus className="h-4 w-4 mr-2" />
-                        Add a shot
+                        Add a scene
                       </Button>
                     </div>
                   </div>
