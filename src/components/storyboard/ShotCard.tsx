@@ -29,9 +29,10 @@ export const ShotCard = ({ shotNumber, id }: ShotCardProps) => {
 
   const style = {
     transform: CSS.Transform.toString(transform),
-    transition,
-    zIndex: isDragging ? 1000 : 0,
+    transition: transition || undefined,
+    zIndex: isDragging ? 1000 : 1,
     opacity: isDragging ? 0.8 : 1,
+    scale: isDragging ? 1.02 : 1,
   };
 
   return (
@@ -42,10 +43,18 @@ export const ShotCard = ({ shotNumber, id }: ShotCardProps) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         whileHover={{ scale: isDragging ? 1 : 1.02 }}
-        transition={{ type: "spring", stiffness: 300 }}
+        transition={{ 
+          type: "spring",
+          stiffness: 300,
+          damping: 25
+        }}
         className="relative"
       >
-        <Card className="bg-white/[0.03] backdrop-blur-xl border-white/10 p-4 hover:bg-white/[0.06] transition-all duration-300 w-[300px] flex-shrink-0 shadow-2xl hover:shadow-purple-500/10 relative overflow-hidden group">
+        <Card className={cn(
+          "bg-white/[0.03] backdrop-blur-xl border-white/10 p-4 transition-all duration-300 w-[300px] flex-shrink-0 shadow-2xl relative overflow-hidden group",
+          isDragging ? "shadow-2xl shadow-purple-500/20" : "hover:shadow-purple-500/10",
+          isDragging ? "bg-white/[0.06]" : "hover:bg-white/[0.06]"
+        )}>
           <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           
           <Button
