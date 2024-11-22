@@ -46,12 +46,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2563EB;
+  background: #9b87f5;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #1d4ed8;
+  background: #7E69AB;
 }
 
 /* Glass effect */
