@@ -5,8 +5,15 @@ import { StoryboardHeader } from "@/components/storyboard/StoryboardHeader";
 import { StoryboardSidebar } from "@/components/storyboard/StoryboardSidebar";
 import { ShotsRow } from "@/components/storyboard/ShotsRow";
 import { Plus } from "lucide-react";
+import { useState } from "react";
 
 const Storyboard = () => {
+  const [scenes, setScenes] = useState([1]);
+
+  const addScene = () => {
+    setScenes(prev => [...prev, prev.length + 1]);
+  };
+
   return (
     <div className="h-screen bg-dark text-white overflow-hidden">
       <StoryboardHeader />
@@ -24,7 +31,7 @@ const Storyboard = () => {
               <div className="flex-1 overflow-hidden">
                 <ScrollArea className="h-full">
                   <div className="min-h-full">
-                    {[1, 2, 3].map((sceneNumber) => (
+                    {scenes.map((sceneNumber) => (
                       <ShotsRow 
                         key={`scene-${sceneNumber}`} 
                         sceneNumber={sceneNumber}
@@ -34,6 +41,7 @@ const Storyboard = () => {
                       <Button 
                         variant="outline" 
                         className="bg-dark-card border-white/10 hover:bg-white/5 px-8 py-4"
+                        onClick={addScene}
                       >
                         <Plus className="h-6 w-6 mr-2" />
                         Add a scene

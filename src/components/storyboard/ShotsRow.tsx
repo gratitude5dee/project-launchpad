@@ -15,8 +15,8 @@ export const ShotsRow = ({ sceneNumber, className }: ShotsRowProps) => {
       <div className="mb-4">
         <h3 className="text-lg font-medium">Scene {sceneNumber}</h3>
       </div>
-      <ScrollArea className="w-full whitespace-nowrap">
-        <div className="flex space-x-6 pb-4">
+      <ScrollArea className="w-full">
+        <div className="flex space-x-6 pb-4 min-w-max">
           {[1, 2, 3, 4, 5].map((index) => (
             <ShotCard 
               key={`scene-${sceneNumber}-shot-${index}`} 
