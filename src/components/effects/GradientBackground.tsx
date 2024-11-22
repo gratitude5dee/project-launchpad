@@ -39,18 +39,17 @@ function NoiseShader() {
     }
   `;
 
-  const shaderMaterial = new THREE.ShaderMaterial({
-    vertexShader,
-    fragmentShader,
-    uniforms: {
-      uTime: { value: 0 }
-    }
-  });
-
   return (
     <mesh ref={meshRef}>
       <planeGeometry args={[2, 2]} />
-      <primitive object={shaderMaterial} ref={materialRef} />
+      <shaderMaterial
+        ref={materialRef}
+        vertexShader={vertexShader}
+        fragmentShader={fragmentShader}
+        uniforms={{
+          uTime: { value: 0 }
+        }}
+      />
     </mesh>
   );
 }
