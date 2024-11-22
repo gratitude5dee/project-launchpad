@@ -1,13 +1,15 @@
 import { useRef, useEffect } from 'react';
 import * as THREE from 'three';
 import { Canvas, useFrame } from '@react-three/fiber';
+import { OrthographicCamera } from '@react-three/drei';
 
 function NoiseShader() {
   const meshRef = useRef<THREE.Mesh>(null);
+  const materialRef = useRef<THREE.ShaderMaterial>(null);
   
   useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.material.uniforms.uTime.value = state.clock.elapsedTime;
+    if (materialRef.current) {
+      materialRef.current.uniforms.uTime.value = state.clock.elapsedTime;
     }
   });
 
@@ -45,6 +47,7 @@ function NoiseShader() {
     <mesh ref={meshRef}>
       <planeGeometry args={[2, 2]} />
       <shaderMaterial
+        ref={materialRef}
         vertexShader={vertexShader}
         fragmentShader={fragmentShader}
         uniforms={uniforms}
@@ -57,6 +60,7 @@ export const GradientBackground = () => {
   return (
     <div className="fixed inset-0 -z-10">
       <Canvas>
+        <OrthographicCamera makeDefault position={[0, 0, 1]} />
         <NoiseShader />
       </Canvas>
     </div>
