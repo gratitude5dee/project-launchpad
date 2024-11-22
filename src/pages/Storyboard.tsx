@@ -4,11 +4,10 @@ import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/componen
 import { StoryboardHeader } from "@/components/storyboard/StoryboardHeader";
 import { StoryboardSidebar } from "@/components/storyboard/StoryboardSidebar";
 import { ShotCard } from "@/components/storyboard/ShotCard";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Storyboard = () => {
   return (
-    <div className="h-screen bg-[#0A0F1C] text-white overflow-hidden">
+    <div className="h-screen bg-dark text-white overflow-hidden">
       <StoryboardHeader />
       
       <div className="h-[calc(100vh-64px)]">

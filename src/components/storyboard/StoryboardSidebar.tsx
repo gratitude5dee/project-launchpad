@@ -6,7 +6,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 
 export const StoryboardSidebar = () => {
   return (
-    <div className="h-full bg-[#0F1624] p-4 space-y-6">
+    <div className="h-full bg-dark p-4 space-y-6 border-r border-white/10">
       <div className="space-y-4">
         <div>
           <h2 className="text-lg font-semibold">Return to Eldridge</h2>
@@ -16,19 +16,19 @@ export const StoryboardSidebar = () => {
         </div>
 
         <Collapsible>
-          <CollapsibleTrigger className="flex items-center justify-between w-full p-2 hover:bg-white/5 rounded-md">
+          <CollapsibleTrigger className="flex items-center justify-between w-full p-2 hover:bg-white/5 rounded-md transition-colors">
             <div className="flex items-center space-x-2">
               <Settings size={16} />
               <span>Location</span>
             </div>
           </CollapsibleTrigger>
           <CollapsibleContent className="p-2">
-            <Input placeholder="Search locations..." className="bg-black/20 border-0" />
+            <Input placeholder="Search locations..." className="bg-black/20 border-0 focus-visible:ring-1 focus-visible:ring-primary" />
           </CollapsibleContent>
         </Collapsible>
 
         <Collapsible>
-          <CollapsibleTrigger className="flex items-center justify-between w-full p-2 hover:bg-white/5 rounded-md">
+          <CollapsibleTrigger className="flex items-center justify-between w-full p-2 hover:bg-white/5 rounded-md transition-colors">
             <div className="flex items-center space-x-2">
               <FileCode size={16} />
               <span>Style</span>
@@ -65,11 +65,11 @@ export const StoryboardSidebar = () => {
         <div className="pt-4 border-t border-white/10">
           <Label className="text-sm font-medium mb-2">Sound</Label>
           <div className="space-y-2">
-            <div className="flex items-center space-x-2 p-2 hover:bg-white/5 rounded-md cursor-pointer">
+            <div className="flex items-center space-x-2 p-2 hover:bg-white/5 rounded-md cursor-pointer transition-colors">
               <Mic2 size={16} />
               <span className="text-sm">Voiceover</span>
             </div>
-            <div className="flex items-center space-x-2 p-2 hover:bg-white/5 rounded-md cursor-pointer">
+            <div className="flex items-center space-x-2 p-2 hover:bg-white/5 rounded-md cursor-pointer transition-colors">
               <Music size={16} />
               <span className="text-sm">Scene Sound</span>
             </div>

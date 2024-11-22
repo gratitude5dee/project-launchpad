@@ -32,6 +32,11 @@ export default {
           DEFAULT: "#1E293B",
           foreground: "#FFFFFF",
         },
+        dark: {
+          DEFAULT: "#0A0F1C",
+          lighter: "#1A1F2C",
+          card: "#1E2435",
+        },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
@@ -62,10 +67,15 @@ export default {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
+        "slide-in": {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(0)" },
+        },
       },
       animation: {
         "fade-up": "fade-up 0.5s ease-out",
         "fade-in": "fade-in 0.3s ease-out",
+        "slide-in": "slide-in 0.3s ease-out",
       },
     },
   },
