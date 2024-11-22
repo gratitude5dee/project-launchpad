@@ -6,7 +6,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { useNavigate } from "react-router-dom";
-import { Settings, Style, Cast, Music, Mic2, ArrowLeft, ArrowRight, Play } from "lucide-react";
+import { Settings, Paintbrush, Cast, Music, Mic2, ArrowLeft, ArrowRight, Play } from "lucide-react";
 
 const Storyboard = () => {
   const navigate = useNavigate();
@@ -66,7 +66,7 @@ const Storyboard = () => {
             <Collapsible>
               <CollapsibleTrigger className="flex items-center justify-between w-full p-2 hover:bg-white/5 rounded-md">
                 <div className="flex items-center space-x-2">
-                  <Style size={16} />
+                  <Paintbrush size={16} />
                   <span>Style</span>
                 </div>
                 <ArrowRight size={16} />
