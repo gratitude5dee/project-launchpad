@@ -41,14 +41,15 @@ export const ShotCard = ({ shotNumber, id }: ShotCardProps) => {
         style={style}
         whileHover={{ scale: isDragging ? 1 : 1.02, rotateY: isDragging ? 0 : 5 }}
         transition={{ type: "spring", stiffness: 300 }}
+        className="relative"
       >
-        <Card className="bg-white/10 backdrop-blur-lg border-white/20 p-4 hover:bg-white/15 transition-all duration-300 w-[300px] flex-shrink-0 shadow-xl hover:shadow-2xl relative overflow-hidden group">
+        <Card className="bg-white/5 backdrop-blur-lg border-white/20 p-4 hover:bg-white/10 transition-all duration-300 w-[300px] flex-shrink-0 shadow-xl hover:shadow-2xl relative overflow-hidden group">
           <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           
           <Button
             variant="ghost"
             size="icon"
-            className="absolute top-2 right-2 cursor-grab active:cursor-grabbing z-50"
+            className="absolute top-2 right-2 cursor-grab active:cursor-grabbing z-50 hover:bg-white/10"
             {...attributes}
             {...listeners}
           >
@@ -59,7 +60,7 @@ export const ShotCard = ({ shotNumber, id }: ShotCardProps) => {
             <div className="aspect-video bg-black/40 rounded-lg relative overflow-hidden group/image">
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-200" />
               <div className="absolute top-2 left-2">
-                <span className="text-sm text-white/70 font-medium bg-black/30 px-2 py-1 rounded-full">
+                <span className="text-sm text-white/70 font-medium bg-black/30 px-2 py-1 rounded-full backdrop-blur-sm">
                   #{shotNumber}
                 </span>
               </div>

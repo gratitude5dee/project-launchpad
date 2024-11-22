@@ -47,7 +47,9 @@ export const ShotsRow = ({ sceneNumber, className }: ShotsRowProps) => {
   return (
     <div className={cn("p-4 border-b border-white/10", className)}>
       <div className="mb-4">
-        <h3 className="text-lg font-medium">Scene {sceneNumber}</h3>
+        <h3 className="text-lg font-medium bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400 animate-pulse">
+          Scene {sceneNumber}
+        </h3>
       </div>
       <ScrollArea className="w-full whitespace-nowrap rounded-md">
         <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
@@ -62,7 +64,7 @@ export const ShotsRow = ({ sceneNumber, className }: ShotsRowProps) => {
               ))}
               <Button 
                 variant="outline" 
-                className="bg-dark-card border-white/10 hover:bg-white/5 h-[450px] w-[300px] flex-shrink-0"
+                className="bg-dark-card/50 border-white/10 hover:bg-white/5 h-[450px] w-[300px] flex-shrink-0 backdrop-blur-sm transition-all duration-300 hover:scale-105"
               >
                 <Plus className="h-6 w-6 mr-2" />
                 Add a shot
