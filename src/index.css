@@ -79,6 +79,15 @@
          hover:bg-dark-card/40 hover:border-primary/30;
 }
 
+/* Text glow effect */
+.text-glow {
+  @apply text-white;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
+               0 0 20px rgba(255, 255, 255, 0.3),
+               0 0 30px rgba(255, 255, 255, 0.2);
+  animation: text-pulse 2s ease-in-out infinite;
+}
+
 /* Golden text effect */
 .golden-text {
   @apply bg-gradient-to-r from-amber-300 to-yellow-500 bg-clip-text text-transparent
@@ -96,4 +105,33 @@
 /* Noise overlay */
 .noise-overlay {
   @apply absolute inset-0 bg-[url('/noise.png')] mix-blend-overlay opacity-20 pointer-events-none;
+}
+
+@keyframes text-pulse {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
+                 0 0 20px rgba(255, 255, 255, 0.3),
+                 0 0 30px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.7),
+                 0 0 25px rgba(255, 255, 255, 0.5),
+                 0 0 35px rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* Input styles with glowing text */
+input, textarea, select {
+  @apply text-white bg-dark-card/30 border-white/10;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Placeholder text */
+::placeholder {
+  @apply text-white/30;
+}
+
+/* Focus styles */
+input:focus, textarea:focus, select:focus {
+  @apply ring-1 ring-white/30 border-white/30;
 }

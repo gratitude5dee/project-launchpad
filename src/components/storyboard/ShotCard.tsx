@@ -52,11 +52,12 @@ export const ShotCard = ({ shotNumber, id }: ShotCardProps) => {
         className="relative"
       >
         <Card className={cn(
-          "bg-white/[0.03] backdrop-blur-xl border-white/10 p-4 transition-all duration-300 w-[300px] flex-shrink-0 shadow-2xl relative overflow-hidden group",
+          "bg-black/30 backdrop-blur-xl border-white/10 p-4 transition-all duration-300 w-[300px] flex-shrink-0 shadow-2xl relative overflow-hidden group",
           isDragging ? "shadow-2xl shadow-purple-500/20" : "hover:shadow-purple-500/10",
-          isDragging ? "bg-white/[0.06]" : "hover:bg-white/[0.06]"
+          isDragging ? "bg-black/40" : "hover:bg-black/40"
         )}>
           <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-purple-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <div className="noise-overlay" />
           
           <Button
             variant="ghost"
@@ -72,7 +73,7 @@ export const ShotCard = ({ shotNumber, id }: ShotCardProps) => {
             <div className="aspect-video bg-black/40 rounded-lg relative overflow-hidden group/image">
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-200" />
               <div className="absolute top-2 left-2">
-                <span className="text-sm text-white/70 font-medium bg-black/30 px-2 py-1 rounded-full backdrop-blur-sm">
+                <span className="text-sm text-glow font-cinzel bg-black/30 px-2 py-1 rounded-full backdrop-blur-sm">
                   #{shotNumber}
                 </span>
               </div>
@@ -80,7 +81,7 @@ export const ShotCard = ({ shotNumber, id }: ShotCardProps) => {
                 <Button 
                   variant="outline" 
                   size="icon" 
-                  className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-110"
+                  className="bg-black/30 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-110"
                   onClick={() => setIsCanvasOpen(true)}
                 >
                   <Paintbrush className="h-4 w-4" />
@@ -88,21 +89,21 @@ export const ShotCard = ({ shotNumber, id }: ShotCardProps) => {
                 <Button 
                   variant="outline" 
                   size="icon" 
-                  className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-110"
+                  className="bg-black/30 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-110"
                 >
                   <ImageIcon className="h-4 w-4" />
                 </Button>
                 <Button 
                   variant="outline" 
                   size="icon" 
-                  className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-110"
+                  className="bg-black/30 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-110"
                 >
                   <Play className="h-4 w-4" />
                 </Button>
                 <Button 
                   variant="outline" 
                   size="icon" 
-                  className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-110"
+                  className="bg-black/30 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-110"
                 >
                   <RefreshCw className="h-4 w-4" />
                 </Button>
@@ -110,12 +111,12 @@ export const ShotCard = ({ shotNumber, id }: ShotCardProps) => {
             </div>
 
             <div>
-              <Label className="text-xs text-white/70">SHOT TYPE</Label>
+              <Label className="text-xs text-glow font-cinzel">SHOT TYPE</Label>
               <Select>
-                <SelectTrigger className="bg-black/20 backdrop-blur-sm border-white/10 focus:ring-1 focus:ring-white/20 mt-2">
+                <SelectTrigger className="bg-black/20 backdrop-blur-sm border-white/10 focus:ring-1 focus:ring-white/20 mt-2 font-cormorant">
                   <SelectValue placeholder="Select shot type" />
                 </SelectTrigger>
-                <SelectContent className="bg-dark-modal/95 backdrop-blur-xl border-white/10">
+                <SelectContent className="bg-black/95 backdrop-blur-xl border-white/10">
                   <SelectItem value="close-up">Close-up</SelectItem>
                   <SelectItem value="medium">Medium Shot</SelectItem>
                   <SelectItem value="wide">Wide Shot</SelectItem>
@@ -125,19 +126,19 @@ export const ShotCard = ({ shotNumber, id }: ShotCardProps) => {
             </div>
 
             <div>
-              <Label className="text-xs text-white/70">PROMPT</Label>
+              <Label className="text-xs text-glow font-cinzel">PROMPT</Label>
               <Input 
                 placeholder="Describe your shot..."
-                className="bg-white/5 backdrop-blur-sm border-white/10 focus-visible:ring-1 focus-visible:ring-white/20 mt-2"
+                className="bg-black/20 backdrop-blur-sm border-white/10 focus-visible:ring-1 focus-visible:ring-white/20 mt-2 font-cormorant"
               />
             </div>
 
             <div>
-              <Label className="text-xs text-white/70">CHARACTER DIALOGUE</Label>
+              <Label className="text-xs text-glow font-cinzel">CHARACTER DIALOGUE</Label>
               <div className="relative">
                 <Input 
                   placeholder="Add character dialogue..."
-                  className="bg-white/5 backdrop-blur-sm border-white/10 focus-visible:ring-1 focus-visible:ring-white/20 pr-10 mt-2"
+                  className="bg-black/20 backdrop-blur-sm border-white/10 focus-visible:ring-1 focus-visible:ring-white/20 pr-10 mt-2 font-cormorant"
                 />
                 <Button 
                   size="icon" 
@@ -150,11 +151,11 @@ export const ShotCard = ({ shotNumber, id }: ShotCardProps) => {
             </div>
 
             <div>
-              <Label className="text-xs text-white/70">SOUND EFFECTS</Label>
+              <Label className="text-xs text-glow font-cinzel">SOUND EFFECTS</Label>
               <div className="relative">
                 <Input 
                   placeholder='E.g., "Ocean waves..."'
-                  className="bg-white/5 backdrop-blur-sm border-white/10 focus-visible:ring-1 focus-visible:ring-white/20 pr-10 mt-2"
+                  className="bg-black/20 backdrop-blur-sm border-white/10 focus-visible:ring-1 focus-visible:ring-white/20 pr-10 mt-2 font-cormorant"
                 />
                 <Button 
                   size="icon" 
