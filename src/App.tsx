@@ -9,6 +9,7 @@ import Storyline from "./pages/Storyline";
 import Settings from "./pages/Settings";
 import Breakdown from "./pages/Breakdown";
 import LoadingPage from "./pages/LoadingPage";
+import Storyboard from "./pages/Storyboard";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/settings" element={<Settings />} />
           <Route path="/breakdown" element={<Breakdown />} />
           <Route path="/loading" element={<LoadingPage />} />
+          <Route path="/storyboard" element={<Storyboard />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
