@@ -1,30 +1,19 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { ArrowLeft, Upload, Wand2 } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Wand2, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const ProjectCreation = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    concept: "",
-    specialRequests: "",
-    format: "",
-    genre: ""
-  });
-
-  const hasInput = Object.values(formData).some(value => value.trim() !== "");
-
-  const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: value
-    }));
-  };
+  const [selectedStory, setSelectedStory] = useState("Echoes of the Past");
+  const [selectedTags, setSelectedTags] = useState(["Mystery", "Family Secrets", "Voiceover Narration"]);
+  const [storyContent, setStoryContent] = useState("");
 
   return (
-    <div className="min-h-screen bg-[#0A0F1C] text-white relative">
+    <div className="min-h-screen bg-[#0A0F1C] text-white">
       {/* Navigation */}
       <nav className="border-b border-primary/10">
         <div className="container mx-auto px-4">
@@ -32,138 +21,108 @@ const ProjectCreation = () => {
             <div className="flex items-center space-x-8">
               <button 
                 onClick={() => navigate("/")}
-                className="text-primary hover:text-primary/90"
+                className="text-primary hover:text-primary/90 flex items-center space-x-2"
               >
-                LTX Studio
+                <span>LTX Studio</span>
+                <span className="px-2 py-0.5 text-xs bg-blue-500/20 text-blue-500 rounded">BETA</span>
               </button>
               <div className="flex items-center space-x-1">
-                <button className="px-4 py-2 text-primary bg-primary/10 rounded-md">CONCEPT</button>
-                <button className="px-4 py-2 text-gray-400 hover:text-white">STORYLINE</button>
-                <button className="px-4 py-2 text-gray-400 hover:text-white">SETTINGS & CAST</button>
-                <button className="px-4 py-2 text-gray-400 hover:text-white">BREAKDOWN</button>
+                <button className="px-4 py-2 text-gray-400">CONCEPT</button>
+                <button className="px-4 py-2 text-primary bg-primary/10 rounded-md">STORYLINE</button>
+                <button className="px-4 py-2 text-gray-400">SETTINGS & CAST</button>
+                <button className="px-4 py-2 text-gray-400">BREAKDOWN</button>
               </div>
             </div>
-            <Button variant="outline" className="border-primary/20 bg-[#1E293B] text-white hover:bg-[#1E293B]/80">
+            <Button variant="outline" className="border-primary/20 bg-transparent text-primary hover:bg-primary/10">
               Upgrade
             </Button>
           </div>
         </div>
       </nav>
 
-      <div className="container mx-auto px-4 py-8 pb-24">
-        <div className="max-w-4xl mx-auto space-y-8">
-          <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-semibold">Input your concept</h1>
-            <div className="flex items-center space-x-4">
-              <button className="text-gray-400 hover:text-white">EXAMPLES</button>
-              <button className="text-gray-400 hover:text-white p-2">
-                <ArrowLeft className="h-5 w-5" />
-              </button>
-            </div>
-          </div>
-
-          {/* Concept Input Section */}
-          <div className="space-y-6">
-            <div className="flex gap-4">
-              <button className="flex-1 flex items-center gap-3 p-4 rounded-lg bg-primary/10 border border-primary/20">
-                <Wand2 className="h-5 w-5 text-primary" />
-                <div className="text-left">
-                  <div className="font-medium">Develop concept with AI</div>
-                  <div className="text-sm text-gray-400">AI involvement in script editing and writing</div>
-                </div>
-              </button>
-              <button className="flex-1 flex items-center gap-3 p-4 rounded-lg border border-gray-800 hover:border-primary/20">
-                <div className="text-left">
-                  <div className="font-medium">Stick to the script</div>
-                  <div className="text-sm text-gray-400">Visualize your idea or script as written</div>
-                </div>
-              </button>
-            </div>
-
-            <Textarea 
-              className="min-h-[200px] bg-[#0D1424] border-primary/20 resize-none"
-              placeholder="Input anything from a full script, a few scenes, or a story..."
-              value={formData.concept}
-              onChange={(e) => handleInputChange("concept", e.target.value)}
-            />
-
-            <div className="flex justify-between items-center">
-              <Button variant="outline" className="border-primary/20 bg-[#1E293B] text-white hover:bg-[#1E293B]/80">
-                <Upload className="mr-2 h-5 w-5" />
-                Upload Text
-              </Button>
-              <span className="text-gray-400">
-                {formData.concept.length} / 12000
-              </span>
-            </div>
-          </div>
-
-          {/* Optional Settings */}
-          <div className="space-y-6">
-            <h3 className="text-xl font-semibold">Optional settings</h3>
-            
-            <div className="space-y-4">
-              <div className="space-y-2">
-                <label className="text-gray-400 text-sm">SPECIAL REQUESTS</label>
-                <Input
-                  className="bg-[#0D1424] border-primary/20"
-                  placeholder='Anything from "80s atmosphere" to "plot twists" or "a car chase"'
-                  value={formData.specialRequests}
-                  onChange={(e) => handleInputChange("specialRequests", e.target.value)}
-                />
-              </div>
-
+      <div className="container mx-auto px-4 py-8">
+        <div className="grid grid-cols-12 gap-8">
+          {/* Left Sidebar */}
+          <div className="col-span-3 space-y-6">
+            <div>
+              <h3 className="text-lg font-semibold mb-4">ALTERNATIVE STORYLINES</h3>
               <div className="space-y-4">
-                <div className="space-y-2">
-                  <label className="text-gray-400 text-sm">FORMAT</label>
-                  <div className="flex gap-2">
-                    <Button variant="outline" className="bg-primary/10 border-primary/20 text-white">Custom</Button>
-                    <Button variant="outline" className="border-gray-800 hover:border-primary/20 bg-[#1E293B] text-white">Short Film</Button>
-                    <Button variant="outline" className="border-gray-800 hover:border-primary/20 bg-[#1E293B] text-white">Commercial</Button>
+                <div className="p-4 bg-primary/10 rounded-lg border border-primary/20">
+                  <h4 className="font-medium text-primary mb-2">{selectedStory}</h4>
+                  <p className="text-sm text-gray-400 mb-3">
+                    A woman's haunting memories guide her through a mysterious town, revealing secrets long buried.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedTags.map((tag) => (
+                      <Badge key={tag} variant="secondary" className="bg-black/20">
+                        {tag}
+                      </Badge>
+                    ))}
                   </div>
                 </div>
 
-                <Input
-                  className="bg-[#0D1424] border-primary/20"
-                  placeholder="How should the AI shape your story?"
-                  value={formData.format}
-                  onChange={(e) => handleInputChange("format", e.target.value)}
-                />
+                <div className="p-4 bg-[#1A1F2C] rounded-lg border border-gray-800">
+                  <h4 className="font-medium mb-2">Whispers in the Wind</h4>
+                  <p className="text-sm text-gray-400 mb-3">
+                    A grieving artist finds solace in the whispers of nature, leading her to an unexpected revelation.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="secondary" className="bg-black/20">Artistic Journey</Badge>
+                    <Badge variant="secondary" className="bg-black/20">Grief</Badge>
+                    <Badge variant="secondary" className="bg-black/20">Nature's Whispers</Badge>
+                  </div>
+                </div>
               </div>
+              <Button className="w-full mt-4 bg-primary/10 text-primary hover:bg-primary/20">
+                <Wand2 className="w-4 h-4 mr-2" />
+                Generate more
+              </Button>
+            </div>
+          </div>
 
-              <div className="space-y-2">
-                <label className="text-gray-400 text-sm">GENRE</label>
-                <Input
-                  className="bg-[#0D1424] border-primary/20"
-                  placeholder="This defines the overall style or category of your story"
-                  value={formData.genre}
-                  onChange={(e) => handleInputChange("genre", e.target.value)}
-                />
+          {/* Main Content */}
+          <div className="col-span-9">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold mb-4">{selectedStory}</h2>
+              <div className="flex gap-2 mb-4">
+                {["Custom", "Mystery", "Family Secrets", "Voiceover Narration"].map((tag) => (
+                  <Badge key={tag} variant="secondary" className="bg-black/20">
+                    {tag}
+                  </Badge>
+                ))}
               </div>
+            </div>
+
+            <Textarea
+              className="min-h-[400px] bg-[#1A1F2C] border-gray-800 resize-none p-4"
+              placeholder="Start writing your story..."
+              value={storyContent}
+              onChange={(e) => setStoryContent(e.target.value)}
+            />
+
+            <div className="text-right text-sm text-gray-400 mt-2">
+              1243 / 2000
             </div>
           </div>
         </div>
       </div>
 
-      {/* Footer Bar */}
-      <div className="fixed bottom-0 left-0 right-0 bg-[#0A0F1C]/80 backdrop-blur-sm border-t border-primary/10">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center h-16">
-            <Button 
-              variant="outline" 
-              className="border-primary/20 bg-[#1E293B] text-white hover:bg-[#1E293B]/80"
-              onClick={() => navigate("/")}
-            >
-              Back
-            </Button>
-            <Button
-              className="bg-primary text-white hover:bg-primary/90 px-8"
-              disabled={!hasInput}
-              onClick={() => navigate("/storyboard")}
-            >
-              Next
-            </Button>
-          </div>
+      {/* Footer */}
+      <div className="fixed bottom-0 left-0 right-0 bg-[#0A0F1C]/80 backdrop-blur-sm border-t border-white/10">
+        <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+          <Button 
+            variant="outline" 
+            className="bg-transparent hover:bg-white/5"
+            onClick={() => navigate("/")}
+          >
+            <ArrowLeft className="mr-2 h-4 w-4" /> Back
+          </Button>
+          <Button 
+            className="bg-primary hover:bg-primary/90"
+            onClick={() => navigate("/storyboard")}
+          >
+            Next
+          </Button>
         </div>
       </div>
     </div>
