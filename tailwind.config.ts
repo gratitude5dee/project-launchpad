@@ -76,12 +76,20 @@ export default {
           "0%": { transform: "translateX(100%)" },
           "100%": { transform: "translateX(0)" },
         },
+        glow: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.5" },
+        },
       },
       animation: {
         "fade-up": "fade-up 0.5s ease-out",
         "fade-in": "fade-in 0.3s ease-out",
         "slide-in": "slide-in 0.3s ease-out",
         "slide-in-right": "slide-in-right 0.3s ease-out",
+        glow: "glow 2s ease-in-out infinite",
+      },
+      perspective: {
+        "1000": "1000px",
       },
     },
   },
