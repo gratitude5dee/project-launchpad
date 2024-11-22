@@ -33,9 +33,9 @@ const Storyboard = () => {
                     <div className="p-6 flex justify-center">
                       <Button 
                         variant="outline" 
-                        className="bg-dark-card border-white/10 hover:bg-white/5"
+                        className="bg-dark-card border-white/10 hover:bg-white/5 px-8 py-4"
                       >
-                        <Plus className="h-4 w-4 mr-2" />
+                        <Plus className="h-6 w-6 mr-2" />
                         Add a scene
                       </Button>
                     </div>
