@@ -29,12 +29,11 @@ const Storyboard = () => {
           <ResizablePanel defaultSize={80}>
             <div className="h-full flex flex-col">
               <ScrollArea className="flex-1">
-                <div className="min-h-full w-full">
+                <div className="min-h-full">
                   {scenes.map((sceneNumber) => (
                     <ShotsRow 
                       key={`scene-${sceneNumber}`} 
                       sceneNumber={sceneNumber}
-                      className="min-w-max"
                     />
                   ))}
                   <div className="p-6 flex justify-center">

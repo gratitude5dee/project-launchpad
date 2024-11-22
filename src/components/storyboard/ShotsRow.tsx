@@ -15,8 +15,8 @@ export const ShotsRow = ({ sceneNumber, className }: ShotsRowProps) => {
       <div className="mb-4">
         <h3 className="text-lg font-medium">Scene {sceneNumber}</h3>
       </div>
-      <ScrollArea className="w-full whitespace-nowrap">
-        <div className="flex space-x-6 pb-4 w-max">
+      <ScrollArea className="w-full whitespace-nowrap rounded-md">
+        <div className="flex space-x-6 pb-4">
           {[1, 2, 3, 4, 5].map((index) => (
             <ShotCard 
               key={`scene-${sceneNumber}-shot-${index}`} 
@@ -31,7 +31,7 @@ export const ShotsRow = ({ sceneNumber, className }: ShotsRowProps) => {
             Add a shot
           </Button>
         </div>
-        <ScrollBar orientation="horizontal" />
+        <ScrollBar orientation="horizontal" className="h-3" />
       </ScrollArea>
     </div>
   );
