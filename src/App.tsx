@@ -7,6 +7,8 @@ import Index from "./pages/Index";
 import Concept from "./pages/Concept";
 import Storyline from "./pages/Storyline";
 import Storyboard from "./pages/Storyboard";
+import Breakdown from "./pages/Breakdown";
+import LoadingPage from "./pages/LoadingPage";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +23,8 @@ const App = () => (
           <Route path="/concept" element={<Concept />} />
           <Route path="/storyline" element={<Storyline />} />
           <Route path="/settings" element={<Storyboard />} />
+          <Route path="/breakdown" element={<Breakdown />} />
+          <Route path="/loading" element={<LoadingPage />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

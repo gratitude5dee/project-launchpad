@@ -12,6 +12,10 @@ const Storyline = () => {
   const [selectedTags, setSelectedTags] = useState(["Mystery", "Family Secrets", "Voiceover Narration"]);
   const [storyContent, setStoryContent] = useState("");
 
+  const handleNext = () => {
+    navigate("/loading", { state: { nextPage: "/settings" } });
+  };
+
   return (
     <div className="min-h-screen bg-[#0A0F1C] text-white">
       {/* Navigation */}
@@ -119,7 +123,7 @@ const Storyline = () => {
           </Button>
           <Button 
             className="bg-primary hover:bg-primary/90"
-            onClick={() => navigate("/settings")}
+            onClick={handleNext}
           >
             Next
           </Button>

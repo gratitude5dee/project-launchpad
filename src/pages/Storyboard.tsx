@@ -11,6 +11,10 @@ import { Settings, Paintbrush, Cast, Music, Mic2, ArrowLeft, ArrowRight, Play } 
 const Storyboard = () => {
   const navigate = useNavigate();
   
+  const handleNext = () => {
+    navigate("/loading", { state: { nextPage: "/breakdown" } });
+  };
+
   return (
     <div className="min-h-screen bg-[#0A0F1C] text-white">
       {/* Top Navigation */}
@@ -166,11 +170,18 @@ const Storyboard = () => {
       {/* Footer */}
       <div className="fixed bottom-0 left-0 right-0 bg-[#0A0F1C]/80 backdrop-blur-sm border-t border-white/10">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-          <Button variant="outline" className="bg-transparent hover:bg-white/5">
+          <Button 
+            variant="outline" 
+            className="bg-transparent hover:bg-white/5"
+            onClick={() => navigate("/storyline")}
+          >
             <ArrowLeft className="mr-2 h-4 w-4" /> Back
           </Button>
-          <Button className="bg-primary hover:bg-primary/90">
-            <Play className="mr-2 h-4 w-4" /> Preview
+          <Button 
+            className="bg-primary hover:bg-primary/90"
+            onClick={handleNext}
+          >
+            Next
           </Button>
         </div>
       </div>
