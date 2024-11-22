@@ -13,24 +13,26 @@ import Storyboard from "./pages/Storyboard";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <BrowserRouter>
+const App = () => {
+  return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/concept" element={<Concept />} />
-          <Route path="/storyline" element={<Storyline />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/breakdown" element={<Breakdown />} />
-          <Route path="/loading" element={<LoadingPage />} />
-          <Route path="/storyboard" element={<Storyboard />} />
-        </Routes>
-        <Toaster />
-        <Sonner />
-      </TooltipProvider>
+      <BrowserRouter>
+        <TooltipProvider>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/concept" element={<Concept />} />
+            <Route path="/storyline" element={<Storyline />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/breakdown" element={<Breakdown />} />
+            <Route path="/loading" element={<LoadingPage />} />
+            <Route path="/storyboard" element={<Storyboard />} />
+          </Routes>
+          <Toaster />
+          <Sonner />
+        </TooltipProvider>
+      </BrowserRouter>
     </QueryClientProvider>
-  </BrowserRouter>
-);
+  );
+};
 
 export default App;
