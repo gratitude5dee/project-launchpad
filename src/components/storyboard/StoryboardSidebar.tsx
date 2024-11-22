@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
-import { Settings, FileCode, Music, Mic2, Upload, Shirt } from "lucide-react";
+import { Settings, FileCode, Music, Mic2, Upload, Shirt, Play, Trash2 } from "lucide-react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
@@ -129,20 +129,56 @@ export const StoryboardSidebar = () => {
           <div className="pt-4 border-t border-white/10">
             <Label className="text-sm font-medium mb-2 text-white/80">Sound</Label>
             <div className="space-y-2">
-              <div className="flex items-center justify-between p-2.5 hover:bg-white/5 rounded-md transition-colors">
-                <div className="flex items-center space-x-2 text-white/80">
-                  <Mic2 size={16} />
-                  <span className="text-sm">Voiceover</span>
-                </div>
-                <Switch />
-              </div>
-              <div className="flex items-center justify-between p-2.5 hover:bg-white/5 rounded-md transition-colors">
-                <div className="flex items-center space-x-2 text-white/80">
-                  <Music size={16} />
-                  <span className="text-sm">Scene Sound</span>
-                </div>
-                <Switch />
-              </div>
+              <Collapsible>
+                <CollapsibleTrigger className="flex items-center justify-between w-full p-2.5 hover:bg-white/5 rounded-md transition-colors">
+                  <div className="flex items-center space-x-2 text-white/80">
+                    <Mic2 size={16} />
+                    <span className="text-sm">VOICEOVER</span>
+                  </div>
+                </CollapsibleTrigger>
+                <CollapsibleContent className="p-2 space-y-4">
+                  <div className="bg-[#1A1F2C] rounded-lg p-3 space-y-3">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-2">
+                        <Play className="h-4 w-4 text-white/70" />
+                        <span className="text-sm text-white/70">Returning to Eldridge feels...</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <Button variant="ghost" size="icon" className="h-6 w-6 text-white/40 hover:text-white/60">
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-8 h-8 rounded bg-primary/20 flex items-center justify-center">
+                        <img 
+                          src="/lovable-uploads/9978d324-102e-44a1-a9b5-86b5c746a9ac.png"
+                          alt="Sarah"
+                          className="w-6 h-6 rounded object-cover"
+                        />
+                      </div>
+                      <span className="text-sm text-white/60">Sarah Thompson</span>
+                    </div>
+                  </div>
+                </CollapsibleContent>
+              </Collapsible>
+
+              <Collapsible>
+                <CollapsibleTrigger className="flex items-center justify-between w-full p-2.5 hover:bg-white/5 rounded-md transition-colors">
+                  <div className="flex items-center space-x-2 text-white/80">
+                    <Music size={16} />
+                    <span className="text-sm">SCENE SOUND</span>
+                  </div>
+                </CollapsibleTrigger>
+                <CollapsibleContent className="p-2 space-y-4">
+                  <div className="bg-[#1A1F2C] rounded-lg p-3">
+                    <Input 
+                      placeholder="E.g. 'Ocean waves...'" 
+                      className="bg-black/20 border-0 text-sm text-white/70 focus-visible:ring-1 focus-visible:ring-primary/50"
+                    />
+                  </div>
+                </CollapsibleContent>
+              </Collapsible>
             </div>
           </div>
         </div>
