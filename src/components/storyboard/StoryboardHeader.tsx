@@ -4,7 +4,7 @@ import { Settings, FileCode, Users, Music, Mic2, Undo, Redo, Play, Share } from 
 
 export const StoryboardHeader = () => {
   return (
-    <header className="border-b border-white/10 bg-dark">
+    <header className="border-b border-white/10 bg-dark sticky top-0 z-50">
       <div className="px-4">
         <div className="h-16 flex items-center justify-between">
           <div className="flex items-center space-x-8">

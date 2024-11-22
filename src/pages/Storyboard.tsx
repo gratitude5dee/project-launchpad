@@ -4,6 +4,7 @@ import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/componen
 import { StoryboardHeader } from "@/components/storyboard/StoryboardHeader";
 import { StoryboardSidebar } from "@/components/storyboard/StoryboardSidebar";
 import { ShotCard } from "@/components/storyboard/ShotCard";
+import { Plus } from "lucide-react";
 
 const Storyboard = () => {
   return (
@@ -27,6 +28,12 @@ const Storyboard = () => {
                       {[1, 2, 3, 4, 5].map((index) => (
                         <ShotCard key={index} shotNumber={index} />
                       ))}
+                    </div>
+                    <div className="mt-6 flex justify-center">
+                      <Button variant="outline" className="bg-dark-card border-white/10 hover:bg-white/5">
+                        <Plus className="h-4 w-4 mr-2" />
+                        Add a shot
+                      </Button>
                     </div>
                   </div>
                 </ScrollArea>
